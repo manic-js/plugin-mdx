@@ -17,9 +17,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prepare": "simple-git-hooks"
-  },
+  "scripts": {},
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1",
     "rehype-pretty-code": "^0.14.3",
@@ -28,9 +26,7 @@
     "remark-mdx-frontmatter": "^5.2.0",
     "shiki": "^3.23.0"
   },
-  "devDependencies": {
-    "simple-git-hooks": "^2.13.1"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "fumadocs-core": ">=16"
   },
@@ -38,8 +34,5 @@
     "fumadocs-core": {
       "optional": true
     }
-  },
-  "simple-git-hooks": {
-    "pre-commit": "bunx --bun oxlint . && bunx --bun oxfmt --check --config .oxfmt.json ."
   }
 }
