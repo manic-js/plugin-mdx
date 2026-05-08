@@ -1,8 +1,6 @@
 # `@manicjs/mdx`
 
-MDX plugin for Manic.
-
-Use MDX pages and content modules with first-class support in Manic apps.
+Official Manic plugin for MDX support and content processing.
 
 ## Documentation
 
