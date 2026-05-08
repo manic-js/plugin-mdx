@@ -1,8 +1,8 @@
-import type { BunPlugin } from "bun";
-import { compile, type CompileOptions } from "@mdx-js/mdx";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+import type { BunPlugin } from 'bun';
+import { compile, type CompileOptions } from '@mdx-js/mdx';
+import remarkGfm from 'remark-gfm';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
 /** Options for MDX compilation and content processing. @see https://www.manicjs.tech/docs/framework/plugins/mdx#options */
 export interface MdxPluginOptions {
@@ -22,18 +22,18 @@ export interface MdxPluginOptions {
    */
   highlight?: boolean | { light: string; dark: string };
   /** Extra remark plugins appended after built-ins */
-  remarkPlugins?: CompileOptions["remarkPlugins"];
+  remarkPlugins?: CompileOptions['remarkPlugins'];
   /** Rehype plugins */
-  rehypePlugins?: CompileOptions["rehypePlugins"];
+  rehypePlugins?: CompileOptions['rehypePlugins'];
   /** Pass-through any @mdx-js/mdx CompileOptions (overrides built-in defaults) */
-  mdxOptions?: Omit<CompileOptions, "remarkPlugins" | "rehypePlugins">;
+  mdxOptions?: Omit<CompileOptions, 'remarkPlugins' | 'rehypePlugins'>;
 }
 
 /** Bun-level MDX plugin for advanced customization. @see https://www.manicjs.tech/docs/framework/plugins/mdx#custom-remarkrehype-plugins */
 export function mdxBunPlugin(options: MdxPluginOptions = {}): BunPlugin {
   const {
     filter = /\.mdx?$/,
-    frontmatterName = "frontmatter",
+    frontmatterName = 'frontmatter',
     disableGfm = false,
     disableFrontmatter = false,
     toc = false,
@@ -44,41 +44,45 @@ export function mdxBunPlugin(options: MdxPluginOptions = {}): BunPlugin {
   } = options;
 
   return {
-    name: "manicjs-mdx",
+    name: 'manicjs-mdx',
     setup(build) {
-      build.onLoad({ filter }, async (args) => {
+      build.onLoad({ filter }, async args => {
         const source = await Bun.file(args.path).text();
 
-        const builtinRemark: NonNullable<CompileOptions["remarkPlugins"]> = [];
+        const builtinRemark: NonNullable<CompileOptions['remarkPlugins']> = [];
         if (!disableGfm) builtinRemark.push(remarkGfm);
         if (!disableFrontmatter) {
           builtinRemark.push(remarkFrontmatter);
           builtinRemark.push([remarkMdxFrontmatter, { name: frontmatterName }]);
         }
 
-        const builtinRehype: NonNullable<CompileOptions["rehypePlugins"]> = [];
+        const builtinRehype: NonNullable<CompileOptions['rehypePlugins']> = [];
         if (highlight) {
-          const { default: rehypePrettyCode } = await import("rehype-pretty-code");
+          const { default: rehypePrettyCode } =
+            await import('rehype-pretty-code');
           const theme =
-            highlight === true ? { light: "github-light", dark: "github-dark" } : highlight;
+            highlight === true
+              ? { light: 'github-light', dark: 'github-dark' }
+              : highlight;
           builtinRehype.push([rehypePrettyCode, { theme }]);
         }
         if (toc) {
-          const { rehypeToc, remarkHeading } = await import("fumadocs-core/mdx-plugins");
+          const { rehypeToc, remarkHeading } =
+            await import('fumadocs-core/mdx-plugins');
           builtinRemark.push(remarkHeading);
           builtinRehype.push(rehypeToc);
         }
 
         const compiled = await compile(source, {
           jsx: true,
-          jsxImportSource: "react",
-          outputFormat: "program",
+          jsxImportSource: 'react',
+          outputFormat: 'program',
           ...mdxOptions,
           remarkPlugins: [...builtinRemark, ...remarkPlugins],
           rehypePlugins: [...builtinRehype, ...rehypePlugins],
         });
 
-        return { contents: String(compiled), loader: "jsx" };
+        return { contents: String(compiled), loader: 'jsx' };
       });
     },
   };
