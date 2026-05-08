@@ -1,6 +1,14 @@
 {
   "name": "@manicjs/mdx",
   "version": "1.0.1",
+  "homepage": "https://github.com/manic-js/plugin-mdx#readme",
+  "bugs": {
+    "url": "https://github.com/manic-js/plugin-mdx/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manic-js/plugin-mdx"
+  },
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -24,13 +32,5 @@
     "fumadocs-core": {
       "optional": true
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/manic-js/plugin-mdx"
-  },
-  "homepage": "https://github.com/manic-js/plugin-mdx#readme",
-  "bugs": {
-    "url": "https://github.com/manic-js/plugin-mdx/issues"
   }
 }

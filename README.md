@@ -16,8 +16,8 @@ bun add @manicjs/mdx
 ## Usage
 
 ```ts
-import { defineConfig } from 'manicjs/config';
-import { mdx } from '@manicjs/mdx';
+import { defineConfig } from "manicjs/config";
+import { mdx } from "@manicjs/mdx";
 
 export default defineConfig({
   plugins: [mdx()],
