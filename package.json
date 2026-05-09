@@ -41,5 +41,9 @@
     "fumadocs-core": {
       "optional": true
     }
-  }
+  },
+  "files": [
+    "src/**/*",
+    "README.md"
+  ]
 }
