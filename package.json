@@ -43,7 +43,8 @@
     }
   },
   "files": [
-    "src/**/*",
-    "README.md"
+    "src",
+    "README.md",
+    "LICENSE"
   ]
 }
