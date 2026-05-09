@@ -1,6 +1,6 @@
 {
   "name": "@manicjs/mdx",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "homepage": "https://github.com/manic-js/plugin-mdx#readme",
   "bugs": {
     "url": "https://github.com/manic-js/plugin-mdx/issues"
@@ -36,7 +36,8 @@
   },
   "devDependencies": {},
   "peerDependencies": {
-    "fumadocs-core": "^16.8.8"
+    "fumadocs-core": ">=16.8.8",
+    "manicjs": ">=1.0.0"
   },
   "peerDependenciesMeta": {
     "fumadocs-core": {
